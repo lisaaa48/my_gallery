@@ -1,0 +1,46 @@
+<div class="my-gallery-show">
+  <div class="index-content" style="padding-top: 100px;">
+    <div class="container" >
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-center" style="font-size: 50px; padding-bottom: 100px;">
+            Visit list
+          </h1>
+            <div class="google-maps">
+              <div id="map"></div>
+              <script type="text/javascript">
+                handler = Gmaps.build('Google');
+                handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
+                  markers = handler.addMarkers([
+                    {
+                      "lat": <%= @holder.latitude %>,
+                      "lng": <%= @holder.longitude %>,
+                      "infowindow": '<p><%= @holder.location %></p>'
+                    }
+                  ]);
+                  handler.bounds.extendWith(markers);
+                  handler.fitMapToBounds();
+                  handler.getMap().setZoom(5);
+                });
+              </script>
+              <script src="https://maps.googleapis.com/maps/api/js?[API]&callback=initMap"
+              async defer></script>
+            </div>
+            <div class="visit-lists text-center" style="padding-top: 50px;">
+              <% @visits.each do |visit| %>
+                <div class="visit-box">
+                  <%= visit.work.holder.location %>
+                    <div class="visit-index">
+                      <%#= attachment_image_tag work, :img, :fill, 131,131, format:'jpeg', class: "visit-imgs" %>
+                    </div>
+                  <%# end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,52 @@
+<div class="index-content" style="padding-top: 100px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Edit Images</h1>
+          <div class="form-body">
+          <%= form_for @work, url: admin_work_path, method: :put do |f| %>
+            <div class="form-group" style="padding-top: 50px;">
+              <h5>Image *</h5>
+              <%= f.attachment_field :img, placeholder: "Add a file", class: "form-control-file" %>
+            </div>
+            <div class="form-group">
+              <h5>Title *</h5>
+              <%= f.text_field :title, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <h5>Author</h5>
+              <%= f.text_field :author, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <h5>Time Frame *</h5>
+              <%= f.collection_select :period_id, Period.all, :id, :time_frame, {prompt: "select of the above"}, {class: "form-control"} %>
+            </div>
+            <div class="form-group">
+              <h5>Production Year *</h5>
+              <%= f.text_field :production_year, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <h5>Tools *</h5>
+              <%= f.text_field :tool, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <h5>Width *</h5>
+              <%= f.number_field :width, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <h5>Height *</h5>
+              <%= f.number_field :height, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <h5>Holder</h5>
+              <%= f.collection_select :holder_id, Holder.all, :id, :location, {prompt: "none of the above"}, {class: "form-control"} %>
+            </div>
+            <div class="form-group text-center" style="padding-top: 50px;">
+              <%= f.submit "Update", class: "btn btn-md btn-secendary" %>
+            </div>
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

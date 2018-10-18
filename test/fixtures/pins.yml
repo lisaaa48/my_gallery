@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  work_id: 1
+  note: MyText
+  value_x: 1
+  value_y: 1
+
+two:
+  work_id: 1
+  note: MyText
+  value_x: 1
+  value_y: 1

@@ -1,0 +1,35 @@
+<div class="mypg">
+  <div class="my-gallery-index">
+    <div class="index-content" style="padding-top: 80px;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12" style="padding-top: 30px;">
+            <h1 class="text-center">
+              aaa
+            </h1>
+            <div class="edit-my-gallery" style="padding-top: 80px;">
+              <div class="work-frame">
+                <%= attachment_image_tag @my_gallery.work, :img, format:'jpeg', class: "work-show" %>
+              </div>
+              <hr>
+              <div class="form-body">
+                <%= form_for @my_gallery, url: user_my_gallery_path, method: :put do |f| %>
+                  <div class="form-group" style="padding-top: 50px;">
+                    <h5>Description</h5>
+                    <%= f.text_area :description, class: "form-control", rows: "10" %>
+                  </div>
+                  <div class="form-group">
+                    <h5>Tags</h5>
+                    <%= text_area_tag 'my_gallery[tag_list]', @my_gallery.tag_list.join(','), placeholder: "Enter comma-delimited key words!", class: "form-control" %>
+                  </div>
+                  <div class="form-group text-center" style="padding-top: 50px;">
+                    <%= f.submit "Update", class: "btn btn-md btn-secendary" %>
+                  </div>
+                <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

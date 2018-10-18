@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyGallery</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class='<%= controller.action_name %>'>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <%= link_to "My Gallery", root_path, class: "navbar-brand my-gallery" %>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="justify-content-end navbar-collapse collapse" id="navbarSupportedContent" style="">
+            <%= form_tag search_index_path, method: :get, class: "form-inline my-2 my-lg-0 justify-content-center navbar-collapse collapse nav-link" do %>
+              <%= text_field_tag :search, "", class: 'form-control mr-sm-2', placeholder: "Search" %>
+              <%= submit_tag "Search", :work => nil, class: "btn btn-outline-secondary my-2 my-sm-0" %>
+            <% end %>
+          </form>
+          <ul class="navbar-nav mr-auto">
+            <% if user_signed_in? %>
+            <li class="nav-item active">
+              <%= link_to "user name's gallery", user_my_gallery_index_path(current_user.id), class: "nav-link my-gallery" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+    </nav>
+    <%= yield %>
+  </body>
+</html>
+

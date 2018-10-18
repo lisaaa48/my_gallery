@@ -1,0 +1,111 @@
+<div class="show">
+  <div class="index-content" style="padding-top: 100px;">
+    <div class="container" style="padding-bottom: 60px;">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="work-frame" id="img_wrapper" style="margin-bottom: 60px;">
+            <%= attachment_image_tag @work, :img, format:'jpeg', class: "work-show" %>
+              <% @work.pins.each do |pin| %>
+                <div class="tag" style="top: <%= pin.value_y %>px; left: <%= pin.value_x %>px;">
+                  <span class="circle"></span>
+                  <span class="tag_name"><%= pin.note %></span>
+                </div>
+              <% end %>
+          </div>
+          <!-- application.jsに記載したほうがいい？ -->
+          <script>
+            $(function() {
+              $('.img_wrapper').hover(
+                function() {
+                  $('.tag').show();
+                },
+                function() {
+                  $('.tag').hide();
+                }
+              )
+              $('.circle').hover(
+                function() {
+                  $(this).parent().find($('.tag_name')).show();
+                },
+                function() {
+                  $(this).parent().find($('.tag_name')).hide();
+                }
+              )
+            });
+          </script>
+
+          <style>
+            /* 下2ついるかな？必要ならば復活させよう */
+            /*.img_wrapper {
+              display: inline-block;
+              position: relative;
+            }*/
+
+            /*.img_wrapper img {
+              width: 500px;
+            }*/
+
+            .tag {
+              position: absolute;
+              cursor: pointer;
+              display: none;
+            }
+
+            .circle {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background-color: #808080;
+              opacity: 0.4;
+              display: inline-block;
+            }
+
+            .tag_name {
+              display: none;
+              background: rgba(0,0,0,0.5);
+              color: #ffffff;
+              padding: 5px;
+            }
+          </style>
+          <hr>
+          <table class="table table-borderless" style="margin-top: 50px;">
+            <tbody>
+              <tr>
+                <td><%= @work.title %></td>
+              </tr>
+              <tr>
+                <td><%= @work.author %></td>
+              </tr>
+              <tr>
+                <td><%= @work.production_year %></td>
+              </tr>
+              <tr>
+                  <td><%= @work.tool %>
+                      <% if @work.width.present? %>
+                    , <%= @work.width %> × <%= @work.height %> cm
+                      <% end %>
+                  </td>
+                </tr>
+              <tr>
+                <td><%= @holder.location %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="add-from-gallery" style="padding: 50px;">
+            <% if @work.added_to_my_gallery?(current_user) %>
+              <%=  link_to "Remove from my gallery", user_my_gallery_path(@work),  method: :delete , "data-confirm" => "Are you sure?", class: "btn btn-outline-dark btn-sm" %>
+            <% else %>
+              <%= link_to "Add to my gallery", add_gallery_user_my_gallery_path(@work), method: :post, class: "btn btn-outline-secondary btn-sm" %>
+            <% end %>
+
+            <% if @work.added_to_my_visit?(current_user) %>
+              <%=  link_to "Remove from my visit list", user_visit_path(@work),  method: :delete , "data-confirm" => "Are you sure?", class: "btn btn-outline-dark btn-sm" %>
+            <% else %>
+              <%= link_to "Add to my visit list", add_visit_user_visit_path(@work), method: :post, class: "btn btn-outline-secondary btn-sm" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

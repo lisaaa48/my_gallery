@@ -1,0 +1,29 @@
+<div class="mypg">
+  <div class="my-gallery-index">
+    <div class="index-content" style="padding-top: 100px;">
+      <div class="container" style="padding-bottom: 60px;">
+        <div class="row">
+          <div class="col-md-12" style="padding-top: 80px;">
+            <h1 class="text-center" style="font-size: 50px; padding-bottom: 100px;">
+              <%#= @user.name %>'s Gallery
+            </h1>
+            <div class="works-all" style="flex-direction: colum; padding-bottom: 1577px; padding-top: 80px;">
+              <% @works.each_slice(3) do |works| %>
+                <div class="works-row">
+                  <% @works.each do |work| %>
+                    <div class="work-box">
+                      <%= link_to user_my_gallery_path(current_user.id,work.id) do %>
+                      <%= attachment_image_tag work.work, :img, :fill, 293, 293 %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

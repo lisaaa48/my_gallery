@@ -1,0 +1,73 @@
+
+<div class="my-gallery-show">
+  <div class="index-content" style="padding-top: 80px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="work-frame" style="margin-bottom: 20px;">
+            <%= attachment_image_tag @my_gallery.work, :img, format:'jpeg', class: "work-show" %>
+          </div>
+          <hr>
+          <table class="table table-borderless" style="margin-top: 50px;">
+            <tbody>
+              <tr>
+                <td><%= @my_gallery.work.title %></td>
+              </tr>
+              <tr>
+                <td><%= @my_gallery.work.author %></td>
+              </tr>
+              <tr>
+                <td><%= @my_gallery.work.production_year %></td>
+              </tr>
+              <tr>
+                <td><%= @my_gallery.work.tool %>
+                    <% if @my_gallery.work.width.present? %>
+                  , <%= @my_gallery.work.width %> × <%= @my_gallery.work.height %> cm
+                    <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><%= @my_gallery.work.holder.location %></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="add-from-gallery" style="padding: 50px;">
+            <% if @my_gallery.work.added_to_my_gallery?(current_user) %>
+              <%=  link_to "Remove from my gallery", user_my_gallery_path(@my_gallery.work),  method: :delete , "data-confirm" => "Are you sure?", class: "btn btn-outline-dark btn-sm" %>
+            <% else %>
+              <%= link_to "Add to my gallery", add_gallery_user_my_gallery_path(@my_gallery.work), method: :post, class: "btn btn-outline-secondary btn-sm" %>
+            <% end %>
+
+            <% if @my_gallery.work.added_to_my_visit?(current_user) %>
+              <%=  link_to "Remove from my visit list", user_visit_path(@my_gallery.work),  method: :delete , "data-confirm" => "Are you sure?", class: "btn btn-outline-dark btn-sm" %>
+            <% else %>
+              <%= link_to "Add to my visit list", add_visit_user_visit_path(@my_gallery.work), method: :post, class: "btn btn-outline-secondary btn-sm" %>
+            <% end %>
+          </div>
+          <% if @my_gallery.description.present? %>
+          <div class="mg-description text-left" style="margin-bottom: 60px;">
+            <hr>
+            <h4 style="padding-top: 25px;">Description</h4>
+            <p style="color: #808080;"><%= @my_gallery.description %></p>
+          </div>
+          <% end %>
+          <% if @my_gallery.tag_list.present? %>
+          <hr>
+          <div class="text-left" style="padding-top: 30px; padding-bottom: 30px;">
+          <h4 class="text-left">Recomended</h4>
+            <% @my_galleries.each do |my_gallery| %>
+              <%= render 'my_galleries/tag_list', tag_list: my_gallery.tag_list %>
+            <% end %>
+          </div>
+          <% end %>
+          <div class="text-center" style="margin-top: 30px; margin-bottom: 80px;">
+          <%= link_to "Edit", edit_user_my_gallery_path(current_user.id, @my_gallery.id), class: "btn btn-outline-secondary" %>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
