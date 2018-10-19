@@ -4,10 +4,10 @@
       <div class="col-md-12">
         <h1>Edit Images</h1>
           <div class="form-body">
-          <%= form_for @work, url: admin_work_path, method: :put do |f| %>
+          <%= form_for @work, url: admin_works_path, method: :post do |f| %>
             <div class="form-group" style="padding-top: 50px;">
               <h5>Image *</h5>
-              <%= f.attachment_field :img, placeholder: "Add a file", class: "form-control-file" %>
+              <%= f.attachment_field :img, placeholder: "Add a file", class: "form-control-file", id: "getfile" %>
             </div>
             <div class="form-group">
               <h5>Title *</h5>
@@ -41,11 +41,96 @@
               <h5>Holder</h5>
               <%= f.collection_select :holder_id, Holder.all, :id, :location, {prompt: "none of the above"}, {class: "form-control"} %>
             </div>
-            <div class="form-group text-center" style="padding-top: 50px;">
-              <%= f.submit "Update", class: "btn btn-md btn-secendary" %>
+            <div class="img_wrapper" id="img_wrapper">
+              <img src="" id="preview" style="width: 500px">
+            </div>
+            <div class="actions form-group text-center" style="padding-top: 50px;">
+              <%= f.submit "Upload", class: "btn btn-md btn-secendary" %>
             </div>
           <% end %>
+          <script>
+            $(function() {
+              var file = document.querySelector('#getfile');
+              // 保存前の画像表示
+              file.onchange = function (){
+                $('.circle, .form_wrapper').remove();
+                var fileList = file.files;
+                if (file.files[0] == null) {
+                  document.querySelector('#preview').src = "";
+                } else {
+                  //読み込み
+                  var reader = new FileReader();
+                  reader.readAsDataURL(fileList[0]);
 
+                  //読み込み後
+                  reader.onload = function  () {
+                    document.querySelector('#preview').src = reader.result;
+                  };
+                };
+              };
+              var i = 1;
+              function counter(x, y) {
+                // put pins
+                $('.img_wrapper').append('<span class="circle"></span>'); // HTML文字列, DOM要素, jQueryオブジェクトを指定して、マッチした各要素内の一番後ろに挿入
+                $('.circle:last-child').addClass('circle' + i); // 要素に追加するclass名。スペース区切りで複数指定することが可能
+                $('.circle' + i).css('display', 'inline-block').css('top', y-5).css('left', x-5).css('position', 'absolute');
+                $('.new_work').append('<div class="form_wrapper"></div>');
+                // add note
+                $('.form_wrapper:last-child').append('<input type="textarea" rows="5" name="" value="" class="tag_name form-control">');
+                var name = "pin[" + i + "][0]";
+                $('input[type="textarea"]:last-child').attr("name", name); // 値を取得したい属性の名前を指定
+                $('.form_wrapper:last-child').append('<span class="delete btn btn-outline-secondary">Delete</span>'); // ボタンにしたい場合<button>にしたほうがいい？
+                // set x coordinate
+                $('.form_wrapper:last-child').append('<input type="hidden" name="" value="" class="tag_x">');
+                var name = "pin[" + i + "][1]";
+                $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("name", name);
+                $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("value", x);
+                // set y coordinate
+                $('.form_wrapper:last-child').append('<input type="hidden" name="" value="" class="tag_y">');
+                var name = "pin[" + i + "][2]";
+                $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("name", name);
+                $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("value", y);
+
+
+                i++; // プロパティ num の値を +1 して返す
+              };
+              document.getElementById( "img_wrapper" ).onclick = function( event ) {
+                var x = event.pageX - $('.img_wrapper').offset().left;  // 水平の位置座標 現在のレイヤー上における相対的な座標を返す
+                var y = event.pageY - $('.img_wrapper').offset().top; // 垂直の位置座標
+                counter(parseInt(x), parseInt(y));
+                $('.actions').appendTo($('f'));
+
+              // Document の getElementById() メソッドは、 id プロパティが指定された文字列に一致する要素を表す Element オブジェクトを返す
+              // 要素の ID は指定されていれば固有であることが求められているため、特定の要素にすばやくアクセスするには便利な方法
+              // これがいわゆるAJAX通信か？
+
+              }
+              $(document).on('click', '.delete', function() {
+                var i = $('.delete').index(this) // 何番目にクリックされた要素か
+                $('.circle').eq(i).remove();
+                $(this).parent().remove();
+              })
+            });
+          </script>
+          <style>
+            .img_wrapper {
+              display: inline-block;
+              position: relative;
+            }
+            .circle {
+              display: none;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              background-color: #808080;
+              opacity: 0.4;
+              cursor: pointer;
+            }
+
+            .delete {
+              cursor: pointer;
+            }
+          </style>
       </div>
     </div>
   </div>

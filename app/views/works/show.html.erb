@@ -3,10 +3,10 @@
     <div class="container" style="padding-bottom: 60px;">
       <div class="row">
         <div class="col-md-12 text-center">
-          <div class="work-frame" id="img_wrapper" style="margin-bottom: 60px;">
+          <div class="work-frame"  id="img_wrapper" style="margin-bottom: 60px;">
             <%= attachment_image_tag @work, :img, format:'jpeg', class: "work-show" %>
               <% @work.pins.each do |pin| %>
-                <div class="tag" style="top: <%= pin.value_y %>px; left: <%= pin.value_x %>px;">
+                <div class="tag" style="top: <%= pin.value_y %>px; left: <%= pin.value_x %>px; width: 50px;">
                   <span class="circle"></span>
                   <span class="tag_name"><%= pin.note %></span>
                 </div>
@@ -15,7 +15,7 @@
           <!-- application.jsに記載したほうがいい？ -->
           <script>
             $(function() {
-              $('.img_wrapper').hover(
+              $('#img_wrapper').hover(
                 function() {
                   $('.tag').show();
                 },
@@ -36,10 +36,10 @@
 
           <style>
             /* 下2ついるかな？必要ならば復活させよう */
-            /*.img_wrapper {
+            .img_wrapper {
               display: inline-block;
               position: relative;
-            }*/
+            }
 
             /*.img_wrapper img {
               width: 500px;
@@ -55,7 +55,8 @@
               width: 10px;
               height: 10px;
               border-radius: 50%;
-              background-color: #808080;
+              background-color: red;
+              /*background-color: #808080;*/
               opacity: 0.4;
               display: inline-block;
             }
@@ -87,7 +88,7 @@
                   </td>
                 </tr>
               <tr>
-                <td><%= @holder.location %></td>
+                <td><%#= @holder.location %></td>
               </tr>
             </tbody>
           </table>

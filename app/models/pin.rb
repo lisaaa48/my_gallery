@@ -1,3 +1,3 @@
 class Pin < ApplicationRecord
-  bolongs_to :work
+  belongs_to :work
 end

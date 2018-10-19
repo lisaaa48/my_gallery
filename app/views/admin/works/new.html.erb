@@ -41,10 +41,10 @@
               <h5>Holder</h5>
               <%= f.collection_select :holder_id, Holder.all, :id, :location, {prompt: "none of the above"}, {class: "form-control"} %>
             </div>
-            <div class="img_wrapper" id="img_wrapper">
-              <img src="" id="preview" style="width: 500px">
+            <div class="img_wrapper work-frame text-center" id="img_wrapper">
+              <img src="" class="work-show" id="preview">
             </div>
-            <div class="form-group text-center" style="padding-top: 50px;">
+            <div class="actions form-group text-center" style="padding-top: 50px;">
               <%= f.submit "Upload", class: "btn btn-md btn-secendary" %>
             </div>
           <% end %>
@@ -74,31 +74,31 @@
                 $('.img_wrapper').append('<span class="circle"></span>'); // HTML文字列, DOM要素, jQueryオブジェクトを指定して、マッチした各要素内の一番後ろに挿入
                 $('.circle:last-child').addClass('circle' + i); // 要素に追加するclass名。スペース区切りで複数指定することが可能
                 $('.circle' + i).css('display', 'inline-block').css('top', y-5).css('left', x-5).css('position', 'absolute');
-                $('form').append('<div class="form_wrapper"></div>');
+                $('.new_work').append('<div class="form_wrapper"></div>');
                 // add note
-                $('.form_wrapper:last-child').append('<input type="textarea" rows="5" note="" value="" class="tag_name form-control">');
-                var note = "pin[" + i + "][0]";
-                $('input[type="text"]:last-child').attr("note", note); // 値を取得したい属性の名前を指定
+                $('.form_wrapper:last-child').append('<input type="textarea" rows="5" name="" value="" class="tag_name form-control">');
+                var name = "pin[" + i + "][0]";
+                $('input[type="textarea"]:last-child').attr("name", name); // 値を取得したい属性の名前を指定
                 $('.form_wrapper:last-child').append('<span class="delete btn btn-outline-secondary">Delete</span>'); // ボタンにしたい場合<button>にしたほうがいい？
                 // set x coordinate
-                $('.form_wrapper:last-child').append('<input type="hidden" note="" value="" class="tag_x">');
-                var note = "pin[" + i + "][1]";
-                $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("note", note);
+                $('.form_wrapper:last-child').append('<input type="hidden" name="" value="" class="tag_x">');
+                var name = "pin[" + i + "][1]";
+                $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("name", name);
                 $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("value", x);
                 // set y coordinate
-                $('.form_wrapper:last-child').append('<input type="hidden" note="" value="" class="tag_y">');
-                var note = "pin[" + i + "][2]";
-                $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("note", note);
+                $('.form_wrapper:last-child').append('<input type="hidden" name="" value="" class="tag_y">');
+                var name = "pin[" + i + "][2]";
+                $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("name", name);
                 $('.form_wrapper:last-child input[type="hidden"]:last-child').attr("value", y);
 
 
                 i++; // プロパティ num の値を +1 して返す
               };
               document.getElementById( "img_wrapper" ).onclick = function( event ) {
-                var x = event.pageX - $('.img_wrapper').offset().left;  // 水平の位置座標
+                var x = event.pageX - $('.img_wrapper').offset().left;  // 水平の位置座標 現在のレイヤー上における相対的な座標を返す
                 var y = event.pageY - $('.img_wrapper').offset().top; // 垂直の位置座標
                 counter(parseInt(x), parseInt(y));
-                $('.actions').appendTo($('form'));
+                $('.actions').appendTo($('f'));
 
               // Document の getElementById() メソッドは、 id プロパティが指定された文字列に一致する要素を表す Element オブジェクトを返す
               // 要素の ID は指定されていれば固有であることが求められているため、特定の要素にすばやくアクセスするには便利な方法
@@ -106,7 +106,7 @@
 
               }
               $(document).on('click', '.delete', function() {
-                var i = $('.delete').index(this)
+                var i = $('.delete').index(this) // 何番目にクリックされた要素か
                 $('.circle').eq(i).remove();
                 $(this).parent().remove();
               })
