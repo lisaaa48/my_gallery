@@ -23,7 +23,9 @@
           <ul class="navbar-nav mr-auto">
             <% if user_signed_in? %>
             <li class="nav-item active">
-              <%= link_to "user name's gallery", user_my_gallery_index_path(current_user.id), class: "nav-link my-gallery" %>
+              <%= link_to user_my_gallery_index_path(current_user.id), class: "nav-link my-gallery" do %>
+              <%= current_user.name + "'s gallery" %>
+              <% end %>
             </li>
             <li class="nav-item">
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>

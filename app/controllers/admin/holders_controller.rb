@@ -4,12 +4,14 @@ class Admin::HoldersController < ApplicationController
 
   def new
     @holder = Holder.new
+    @holders = Holder.all.order(id: "DESC")
   end
 
   def create
     holder = Holder.new(holder_params)
     holder.save
-    redirect_to admin_works_path
+    redirect_to new_admin_holder_path
+    # redirect_to admin_works_path
   end
 
   private

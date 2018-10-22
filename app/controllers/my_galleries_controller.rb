@@ -1,6 +1,7 @@
 class MyGalleriesController < ApplicationController
 
   def index
+    @user = current_user
     @works = MyGallery.where(user_id: current_user.id)
   end
 

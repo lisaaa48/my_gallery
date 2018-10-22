@@ -1,38 +1,56 @@
 <%= stylesheet_link_tag 'user/my_galleries' %>
 <div class="my-gallery-show">
-  <div class="index-content" style="padding-top: 100px;">
+  <div class="index-content" style="padding-top: 80px;">
     <div class="container" >
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-center" style="font-size: 50px; padding-bottom: 100px;">
+          <h1 class="text-center" style="font-size: 50px; padding-bottom: 30px;">
             Visit list
           </h1>
-            <div class="google-maps">
+            <div class="google-maps" style="margin-bottom: 50px;">
               <div id="map"></div>
-              <script type="text/javascript">
-                handler = Gmaps.build('Google');
-                handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
-                  markers = handler.addMarkers([
-                    {
-                      "lat": <%= @holder.latitude %>,
-                      "lng": <%= @holder.longitude %>,
-                      "infowindow": '<p><%= @holder.location %></p>'
+                <script type="text/javascript">
+                function initMap() {
+                    var locations = [
+                         <% @visits.each do |visit| %>
+                          ["<%= visit.work.holder.location %>", <%= visit.work.holder.latitude %>,<%= visit.work.holder.longitude %>],
+                         <% end %>
+                    ];
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                         zoom: 5,
+                         center: new google.maps.LatLng(48.860611,2.337644),
+                         mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+
+                    var infowindow = new google.maps.InfoWindow;
+                    var marker, i;
+
+                    for (i = 0; i < locations.length; i++) {
+                        marker = new google.maps.Marker({
+                             position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                             map: map
+                        });
+
+                        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                             return function() {
+                                 infowindow.setContent(locations[i][0]);
+                                 infowindow.open(map, marker);
+                             }
+                        })(marker, i));
                     }
-                  ]);
-                  handler.bounds.extendWith(markers);
-                  handler.fitMapToBounds();
-                  handler.getMap().setZoom(5);
-                });
-              </script>
-              <script src="https://maps.googleapis.com/maps/api/js?[API]&callback=initMap"
-              async defer></script>
+                }
+                </script>
+                <script async defer
+                        src="https://maps.googleapis.com/maps/api/js?key=my_api_key&callback=initMap">
+                </script>
             </div>
+            <hr>
             <div class="visit-lists text-center" style="padding-top: 50px;">
               <% @visits.each do |visit| %>
                 <div class="visit-box">
                   <%= visit.work.holder.location %>
                     <div class="visit-index">
-                      <%#= attachment_image_tag work, :img, :fill, 131,131, format:'jpeg', class: "visit-imgs" %>
+                      <%= attachment_image_tag visit.work, :img, :fill, 131,131, format:'jpeg', class: "visit-imgs" %>
                     </div>
                   <%# end %>
                 </div>

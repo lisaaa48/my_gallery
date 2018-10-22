@@ -14,6 +14,26 @@
               <%= f.submit "Submit", class: "btn btn-md btn-outline-secondary" %>
             </div>
           <% end %>
+          <table class="table" style="margin-top: 80px;">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Location</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Longitude</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @holders.each do |holder| %>
+              <tr>
+                <th scope="row"><%= holder.id %></th>
+                <td><%= holder.location %></td>
+                <td><%= holder.latitude %></td>
+                <td><%= holder.longitude %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

@@ -2,17 +2,6 @@ class VisitsController < ApplicationController
 
   def index
     @visits = Visit.where(user_id: current_user.id)
-    # @visit = @visits.find_by(work_id: params[:work_id])
-    @holders = @visits.select("work_id").distinct.order("work_id")
-
-
-    # @works = []
-    # @visits.each do |visit|
-    #    @works.push(visit.work)
-    # end
-    # @visitW = @visit.works
-    # @holders = @visitW.holders.uniq
-    @works = Work.where(holder_id: @holders).all
   end
 
   # add to my visit list
