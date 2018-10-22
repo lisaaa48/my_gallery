@@ -1,0 +1,84 @@
+/* 画像のshow(gallery) */
+.show{
+  font-family: 'Nanum Myeongjo', serif;
+  background-color: #fafdff;
+  color: #696969;
+}
+
+/* before Add */
+.show > .btn-outline-secondary {
+  background: #fafdff; //ボタンの背景色
+    color: #191970; //ボタンのテキストの色
+}
+
+.btn-outline-secondary:hover, .btn-outline-secondary:focus,
+.btn-outline-secondary:active, .btn-outline-secondary:active:focus, .btn-outline-secondary:active:hover, .btn-outline-secondary:active.focus,
+.btn-outline-secondary.active, .btn-outline-prsecondaryimary.active:focus, .btn-outline-secondary.active:hover, .btn-outline-secondary.active.focus,
+.open > .dropdown-toggle.btn-outline-secondary,
+.open > .dropdown-toggle.btn-outline-secondary:hover,
+.open > .dropdown-toggle.btn-outline-secondary:focus,
+.open > .dropdown-toggle.btn-outline-secondary.focus,
+.btn-outline-secondary.disabled:hover, .btn-outline-secondary[disabled]:hover, fieldset[disabled] .btn-outline-secondary:hover,
+.btn-outline-secondary.disabled:focus, .btn-outline-secondary[disabled]:focus, fieldset[disabled] .btn-outline-secondary:focus,
+.btn-outline-secondary.disabled.focus, .btn-outline-secondary[disabled].focus, fieldset[disabled] .btn-outline-secondary.focus {
+    background: #191970; //ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
+    color: #fafdff; //ボタンの上にポインタを持ってきたり、クリックしたりした時のテキストの色
+}
+
+/* after Added */
+.add-from-gallery > .btn-outline-dark {
+  background: #696969; //ボタンの背景色
+    color: #fafdff; //ボタンのテキストの色
+}
+
+.btn-outline-dark:hover, .btn-outline-dark:focus,
+.btn-outline-dark:active, .btn-outline-dark:active:focus, .btn-outline-dark:active:hover, .btn-outline-dark:active.focus,
+.btn-outline-dark.active, .btn-outline-dark.active:focus, .btn-outline-dark.active:hover, .btn-outline-dark.active.focus,
+.open > .dropdown-toggle.btn-outline-dark,
+.open > .dropdown-toggle.btn-outline-dark:hover,
+.open > .dropdown-toggle.btn-outline-dark:focus,
+.open > .dropdown-toggle.btn-outline-dark.focus,
+.btn-outline-dark.disabled:hover, .btn-outline-dark[disabled]:hover, fieldset[disabled] .btn-outline-dark:hover,
+.btn-outline-dark.disabled:focus, .btn-outline-dark[disabled]:focus, fieldset[disabled] .btn-outline-dark:focus,
+.btn-outline-dark.disabled.focus, .btn-outline-dark[disabled].focus, fieldset[disabled] .btn-outline-dark.focus {
+    background: #fafdff; //ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
+    color: #696969; //ボタンの上にポインタを持ってきたり、クリックしたりした時のテキストの色
+}
+
+/* works#show 画像表示 */
+.work-frame {
+  width: 1080px;
+  height: 600px;
+}
+
+.work-show {
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:100%;
+}
+
+/* gallery work#index */
+.works-all {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.works-row {
+  width: 935px;
+  height: 321px;
+  margin: 0 auto;
+}
+
+.work-box {
+  margin-right: 28px;
+  margin-bottom: 28px;
+  float: left;
+
+}
+
+.work-box:nth-child(3n) {
+  margin-right: 0;
+}

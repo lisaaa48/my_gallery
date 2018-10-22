@@ -1,0 +1,34 @@
+<%= stylesheet_link_tag 'user/users' %>
+<div class="index-content" style="padding-top: 50px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <div class="form-user style-1 rounded has-shadow-1 text-cente">
+            <!-- <div class="form-headerr"> -->
+                <h2>Log in to <span class="my-gallery">My Gallery</span></h2><br>
+            <!-- </div> -->
+            <div class="form-body">
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                      <%= devise_error_messages! %>
+              <div class="form-group">
+                  <h5>Email</h5>
+                  <%= f.email_field :email, class:"form-control", placeholder:"Email"%>
+              </div>
+              <div class="form-group">
+                  <h5>Password</h5>
+                  <%= f.password_field :password, autocomplete: "off", class:"form-control", placeholder:"Password" %>
+              </div>
+              <div class="form-group" style="padding-bottom: 200px;">
+                  <h5></h5><br>
+                  <%= f.submit "Log in", class:"btn btn-outline-secondary btn-lg btn-block btn-base-1 mt-20" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <div class="col-md-4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+

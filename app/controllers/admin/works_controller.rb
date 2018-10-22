@@ -1,5 +1,7 @@
 class Admin::WorksController < ApplicationController
 
+  layout "admin"
+
   def index
     @works =Work.all
   end
@@ -25,6 +27,12 @@ class Admin::WorksController < ApplicationController
   def update
     work = Work.find(params[:id])
     work.update(work_params)
+    redirect_to admin_works_path
+  end
+
+  def destroy
+    work = Work.find(params[:id])
+    work.destroy
     redirect_to admin_works_path
   end
 

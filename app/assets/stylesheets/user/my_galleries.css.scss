@@ -1,0 +1,75 @@
+/* my gallery show & visit list */
+.my-gallery-show {
+  font-family: 'Nanum Myeongjo', serif;
+  background-color: #fafdff;
+  color: #00533fff;
+}
+
+/* my gallery visit list google maps */
+#map {
+  height: 100%;
+  }
+
+.google-maps {
+  width: 100%;
+  height: 500px;
+}
+
+/* my gallery visit list */
+.visit-list {
+  margin: 0 auto;
+  width: 1093px;
+}
+.visit-box {
+  width: 262px;
+  margin-right: 15px;
+}
+
+.visit-box:last-child {
+  margin-right: 0;
+}
+
+/* my gallery */
+.mypg {
+  font-family: 'Nanum Myeongjo', serif;
+  background-color: #006a6c;
+  color: #fafdff;
+}
+
+/* works#show 画像表示 */
+.work-frame {
+  width: 1080px;
+  height: 600px;
+}
+
+.work-show {
+  width:auto;
+  height:auto;
+  max-width:100%;
+  max-height:100%;
+}
+
+/* gallery work#index */
+.works-all {
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.works-row {
+  width: 935px;
+  height: 321px;
+  margin: 0 auto;
+}
+
+.work-box {
+  margin-right: 28px;
+  margin-bottom: 28px;
+  float: left;
+
+}
+
+.work-box:nth-child(3n) {
+  margin-right: 0;
+}

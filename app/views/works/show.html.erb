@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'user/works' %>
 <div class="show">
   <div class="index-content" style="padding-top: 100px;">
     <div class="container" style="padding-bottom: 60px;">
@@ -6,9 +7,11 @@
           <div class="work-frame"  id="img_wrapper" style="margin-bottom: 60px;">
             <%= attachment_image_tag @work, :img, format:'jpeg', class: "work-show" %>
               <% @work.pins.each do |pin| %>
-                <div class="tag" style="top: <%= pin.value_y %>px; left: <%= pin.value_x %>px; width: 50px;">
+                <div class="tag" style="top: <%= pin.value_y %>px; left: <%= pin.value_x.to_i - 100 %>px;">
                   <span class="circle"></span>
-                  <span class="tag_name"><%= pin.note %></span>
+                  <div class="tag-box">
+                    <span class="tag_name""><%= pin.note %></span>
+                  </div>
                 </div>
               <% end %>
           </div>
@@ -61,11 +64,17 @@
               display: inline-block;
             }
 
+            .tag-box {
+              width: 200px;
+              height: auto;
+            }
+
             .tag_name {
               display: none;
               background: rgba(0,0,0,0.5);
               color: #ffffff;
-              padding: 5px;
+              padding: 5px;;
+              word-break: keep-all;
             }
           </style>
           <hr>

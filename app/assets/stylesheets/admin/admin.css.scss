@@ -1,0 +1,17 @@
+html,
+body,
+#main {height:100%;}
+
+body {
+  font-family: 'Nanum Myeongjo', serif;
+  background-color: #fafdff;
+  color: #696969;
+}
+
+.container {
+  padding-top: 65px;
+  padding-bottom: 5px;
+  min-height: calc(100vh - 130px);
+  height: calc(100%);
+  margin: 0 auto;
+}

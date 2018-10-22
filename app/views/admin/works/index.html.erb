@@ -1,8 +1,9 @@
+<%= stylesheet_link_tag 'admin/works' %>
 <div class="index-content" style="padding-top: 100px;">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1>Works Index</h1>
+        <h1>All Work Images</h1>
           <div class="admin-works-list" style="margin-top: 50px;">
             <% @works.each do |work| %>
               <div class="card d-inline-block" style="width: 300px;">
@@ -14,8 +15,11 @@
                     <%= attachment_image_tag work, :img, class: "admin-work-img align-middle" %>
                   </div>
                   <p class="card-text text-center" style="color: #808080;"><%#=  %>status</p>
-                  <%#= link_to "Edit" _path, class: "tn btn-outline-success btn-sm" %></td>
-                  <%#= link_to "Delete" _path, class: "btn btn-outline-danger btn-sm" %></td>
+                  <div class="text-center" style="padding-top: 10px;">
+                    <%= link_to "Edit", edit_admin_work_path(work), style: "color: #808000; margin-right: 5px;" %></td>
+                    <%= link_to "Delete", admin_work_path(work), method: :delete, "data-confirm" => "Are you sure?", style: "color: #bc8f8f; margin-left: 5px;" %>
+                  </div>
+                  </td>
                 </div>
               </div>
             <% end %>

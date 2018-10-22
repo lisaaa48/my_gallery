@@ -1,0 +1,39 @@
+@import "bootstrap";
+
+/* header */
+header, nav {
+  font-family: 'Nanum Myeongjo', serif;
+  color: #afafb0;
+}
+
+/* "my gallery"のフォント変更 */
+.my-gallery {
+  font-family: 'Dancing Script', cursive;
+}
+
+/* ボタン色の変更 */
+nav > .btn-outline-secondary {
+    background: #fafdff; //ボタンの背景色
+    color: #696969; //ボタンのテキストの色
+}
+
+.btn-outline-secondary:hover, .btn-outline-secondary:focus,
+.btn-outline-secondary:active, .btn-outline-secondary:active:focus, .btn-outline-secondary:active:hover, .btn-outline-secondary:active.focus,
+.btn-outline-secondary.active, .btn-outline-prsecondaryimary.active:focus, .btn-outline-secondary.active:hover, .btn-outline-secondary.active.focus,
+.open > .dropdown-toggle.btn-outline-secondary,
+.open > .dropdown-toggle.btn-outline-secondary:hover,
+.open > .dropdown-toggle.btn-outline-secondary:focus,
+.open > .dropdown-toggle.btn-outline-secondary.focus,
+.btn-outline-secondary.disabled:hover, .btn-outline-secondary[disabled]:hover, fieldset[disabled] .btn-outline-secondary:hover,
+.btn-outline-secondary.disabled:focus, .btn-outline-secondary[disabled]:focus, fieldset[disabled] .btn-outline-secondary:focus,
+.btn-outline-secondary.disabled.focus, .btn-outline-secondary[disabled].focus, fieldset[disabled] .btn-outline-secondary.focus {
+    background: #696969; //ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
+    color: #fafdff; //ボタンの上にポインタを持ってきたり、クリックしたりした時のテキストの色
+}
+
+/* 背景色・文字色変更 */
+body {
+  font-family: 'Nanum Myeongjo', serif;
+  background-color: #001e43;
+  color: #fafdff;
+}

@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag 'admin/works' %>
+<div class="index-content" style="padding-top: 50px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">
+          All users
+        </h1>
+        <div class="users-all" style="padding-top: 80px;">
+          <% @users.each do |user| %>
+            <div class="work-box">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">User ID</th>
+                    <th scope="col">User name</th>
+                    <th scope="col" colspan="2">Email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= user.id %></td>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <td><%= link_to "Destroy", user_path(user), method: :delete, "data-confirm" => "Are you sure?", style: "color: #bc8f8f;" %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

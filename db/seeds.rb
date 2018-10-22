@@ -38,8 +38,6 @@
 # Holder.create(location: "The Pushkin State Museum of Fine Arts, Moscow")
 # Holder.create(location: "The State Hermitage Museum, Saint Petersburg")
 # Holder.create(location: "The Metropolitan Museum of Art, New York")
-# 以上20181014追加
-
 # Period.create(time_frame: "Stone Age")
 # Period.create(time_frame: "Crete, Mycenae and Greek Art")
 # Period.create(time_frame: "Etruscan")
@@ -65,4 +63,4 @@
 # Period.create(time_frame: "Post-Impressionism")
 # Period.create(time_frame: "Art Nouveau")
 # Period.create(time_frame: "20th Century Art")
-# 以上20181016追加
+# 以上20181022追加
