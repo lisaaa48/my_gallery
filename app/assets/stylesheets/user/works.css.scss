@@ -58,6 +58,44 @@
   max-height:100%;
 }
 
+.img_wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+/*.img_wrapper img {
+  width: 500px;
+}*/
+
+.tag {
+  position: absolute;
+  cursor: pointer;
+  display: none;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+  /*background-color: #808080;*/
+  opacity: 0.4;
+  display: inline-block;
+}
+
+.tag-box {
+  width: 200px;
+  height: auto;
+}
+
+.tag_name {
+  display: none;
+  background: rgba(0,0,0,0.5);
+  color: #ffffff;
+  padding: 5px;;
+  word-break: keep-all;
+}
+
 /* gallery work#index */
 .works-all {
   margin: 0 auto;

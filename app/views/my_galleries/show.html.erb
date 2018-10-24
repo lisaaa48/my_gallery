@@ -4,8 +4,16 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <div class="work-frame" style="margin-bottom: 20px;">
+          <div class="work-frame"  id="img_wrapper" style="margin-bottom: 20px;">
             <%= attachment_image_tag @my_gallery.work, :img, format:'jpeg', class: "work-show" %>
+              <% @my_gallery.work.pins.each do |pin| %>
+                <div class="tag" style="top: <%= pin.value_y %>px; left: <%= pin.value_x.to_i - 100 %>px;">
+                  <span class="circle"></span>
+                  <div class="tag-box">
+                    <span class="tag_name""><%= pin.note %></span>
+                  </div>
+                </div>
+              <% end %>
           </div>
           <hr>
           <table class="table table-borderless" style="margin-top: 50px;">

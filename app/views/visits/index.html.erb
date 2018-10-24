@@ -17,7 +17,7 @@
                          <% end %>
                     ];
                     var map = new google.maps.Map(document.getElementById('map'), {
-                         zoom: 5,
+                         zoom: 4,
                          center: new google.maps.LatLng(48.860611,2.337644),
                          mapTypeId: google.maps.MapTypeId.ROADMAP
                     });
@@ -41,20 +41,46 @@
                 }
                 </script>
                 <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=my_api_key&callback=initMap">
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHymA7LhYFLCqSKLZQ5icXK1-ouiAJuww&callback=initMap">
                 </script>
             </div>
             <hr>
-            <div class="visit-lists text-center" style="padding-top: 50px;">
-              <% @visits.each do |visit| %>
-                <div class="visit-box">
-                  <%= visit.work.holder.location %>
-                    <div class="visit-index">
-                      <%= attachment_image_tag visit.work, :img, :fill, 131,131, format:'jpeg', class: "visit-imgs" %>
-                    </div>
-                  <%# end %>
-                </div>
-              <% end %>
+            <h3 style="padding-top: 30px;">List of Works</h3>
+            <div class="visit-list" style="padding-top: 10px; margin-bottom: 80px; width: 100%; height: 400px; overflow:auto;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Visited on</th>
+                  </tr>
+                </thead>
+                <% @visits.each do |visit| %>
+                <tbody>
+                  <tr>
+                    <td><div class="visit-img-box">
+                      <%= attachment_image_tag visit.work, :img, format:'jpeg', class: "visit-img" %>
+                    </div></td>
+                    <td><%= visit.work.title %></td>
+                    <td><%= visit.work.author %></td>
+                    <td class="col-xs-2"><%= visit.work.holder.location %></td>
+                    <td>
+                      <% if visit.visited_at.present? %>
+                        <%= visit.visited_at %>
+                      <% else %>
+                        <%= form_for visit, url: user_visit_path(@user, visit.id), method: :put do |f| %>
+                        <%= f.date_field :visited_at, class: 'form-control' %>
+                        <%#= link_to "Visited", _path metho: :post, class: "btn btn-outline-secondary" %>
+                        <%= f.submit "Visited", class: "btn btn-outline-secondary" %>
+                        <% end %>
+                      <% end %>
+                    </td>
+                  </tr>
+                </tbody>
+                <% end %>
+              </table>
             </div>
           </div>
         </div>

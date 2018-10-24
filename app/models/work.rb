@@ -1,5 +1,13 @@
 class Work < ApplicationRecord
 
+  validates :img_id, presence: true
+  validates :title, presence: true
+  validates :author, presence: true
+  validates :production_year, presence: true
+  validates :tool, presence: true
+  validates :period_id, presence: true
+  validates :holder_id, presence: true
+
   has_many :my_galleries, dependent: :destroy
   has_many :visits, dependent: :destroy
   has_many :pins, dependent: :destroy

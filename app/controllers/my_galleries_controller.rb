@@ -1,5 +1,8 @@
 class MyGalleriesController < ApplicationController
 
+  before_action :authenticate_user!
+  # before_action :correct_user, only: [:index, :show, :edit, :update :add_gallery, :destroy, :withdraw]
+
   def index
     @user = current_user
     @works = MyGallery.where(user_id: current_user.id)
@@ -58,6 +61,14 @@ class MyGalleriesController < ApplicationController
 
   def my_gallery_params
    params.require(:my_gallery).permit(:description, :tag_list, :work_id, :user_id, :name)
+  end
+
+  def correct_user
+    @my_gallery = current_user.my_gallery.find_by(id: params[:id])
+    @user = @my_gallery.user.id
+    unless @user == current_user.id
+      redirect_to gallery_index_path
+    end
   end
 
 end

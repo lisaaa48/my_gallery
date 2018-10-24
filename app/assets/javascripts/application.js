@@ -18,3 +18,22 @@
 //= require bootstrap-sprockets
 
 //= require underscore
+
+$(function() {
+  $('#img_wrapper').hover(
+    function() {
+      $('.tag').show();
+    },
+    function() {
+      $('.tag').hide();
+    }
+  )
+  $('.circle').hover(
+    function() {
+      $(this).parent().find($('.tag_name')).show();
+    },
+    function() {
+      $(this).parent().find($('.tag_name')).hide();
+    }
+  )
+});
