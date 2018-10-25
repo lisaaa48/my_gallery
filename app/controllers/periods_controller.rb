@@ -1,7 +1,7 @@
 class PeriodsController < ApplicationController
 
   def index
-    @periods = Period.search(params[:search])
+    @works = Work.search(params[:search])
   end
 
 end

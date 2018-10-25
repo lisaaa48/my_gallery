@@ -1,5 +1,7 @@
 class Admin::WorksController < ApplicationController
 
+  before_action :authenticate_user!
+
   layout "admin"
 
   def index
@@ -10,7 +12,7 @@ class Admin::WorksController < ApplicationController
     @work = Work.new
   end
 
-  # 後々バリデーションかける
+  # params[:pin](formのname="pin")にハッシュで入ったvalue属性を保存
   def create
     work = Work.new(work_params)
     work.save
@@ -22,11 +24,16 @@ class Admin::WorksController < ApplicationController
 
   def edit
     @work = Work.find(params[:id])
+    @pins = @work.pins
   end
 
   def update
     work = Work.find(params[:id])
+    pins = work.pins
     work.update(work_params)
+    pins.each do |pin|
+      pin.note.update
+    end
     redirect_to admin_works_path
   end
 

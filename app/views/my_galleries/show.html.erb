@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center">
-          <div class="work-frame"  id="img_wrapper" style="margin-bottom: 20px;">
+          <div class="work-frame img_wrapper"  id="img_wrapper" style="margin-bottom: 20px;">
             <%= attachment_image_tag @my_gallery.work, :img, format:'jpeg', class: "work-show" %>
               <% @my_gallery.work.pins.each do |pin| %>
                 <div class="tag" style="top: <%= pin.value_y %>px; left: <%= pin.value_x.to_i - 100 %>px;">
@@ -15,6 +15,28 @@
                 </div>
               <% end %>
           </div>
+
+          <script>
+            $(function() {
+              $('.img_wrapper').hover(
+                function() {
+                  $('.tag').show();
+                },
+                function() {
+                  $('.tag').hide();
+                }
+              )
+              $('.circle').hover(
+                function() {
+                  $(this).parent().find($('.tag_name')).show();
+                },
+                function() {
+                  $(this).parent().find($('.tag_name')).hide();
+                }
+              )
+            });
+          </script>
+
           <hr>
           <table class="table table-borderless" style="margin-top: 50px;">
             <tbody>
@@ -41,15 +63,15 @@
           </table>
           <div class="add-from-gallery" style="padding: 50px;">
             <% if @my_gallery.work.added_to_my_gallery?(current_user) %>
-              <%=  link_to "Remove from my gallery", user_my_gallery_path(@my_gallery.work),  method: :delete , "data-confirm" => "Are you sure?", class: "btn btn-outline-dark btn-sm" %>
+              <%=  link_to "Remove from my gallery", withdraw_user_my_gallery_path(@my_gallery.work),  method: :delete , "data-confirm" => "Are you sure?", class: "btn btn-outline-dark btn-sm" %>
             <% else %>
               <%= link_to "Add to my gallery", add_gallery_user_my_gallery_path(@my_gallery.work), method: :post, class: "btn btn-outline-secondary btn-sm" %>
             <% end %>
 
             <% if @my_gallery.work.added_to_my_visit?(current_user) %>
-              <%=  link_to "Remove from my visit list", user_visit_path(@my_gallery.work),  method: :delete , "data-confirm" => "Are you sure?", class: "btn btn-outline-dark btn-sm" %>
+              <%=  link_to "Remove from my visit list", withdraw_user_visit_path(@my_gallery.work),  method: :delete , "data-confirm" => "Are you sure?", class: "btn btn-outline-dark btn-sm" %>
             <% else %>
-              <%= link_to "Add to my visit list", add_visit_user_visit_path(@my_gallery.work), method: :post, class: "btn btn-outline-secondary btn-sm" %>
+              <%= link_to "Add to my visit list", pin_map_user_visit_path(@my_gallery.work), method: :post, class: "btn btn-outline-secondary btn-sm" %>
             <% end %>
           </div>
           <% if @my_gallery.description.present? %>

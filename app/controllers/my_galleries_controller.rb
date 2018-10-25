@@ -1,7 +1,7 @@
 class MyGalleriesController < ApplicationController
 
   before_action :authenticate_user!
-  # before_action :correct_user, only: [:index, :show, :edit, :update :add_gallery, :destroy, :withdraw]
+  before_action :correct_user, only: [:edit, :update]
 
   def index
     @user = current_user
@@ -11,7 +11,7 @@ class MyGalleriesController < ApplicationController
   def show
     @user = current_user
     @my_galleries = @user.my_galleries
-    @my_gallery = @my_galleries.find(params[:id])
+    @my_gallery = @my_galleries.find_by(id: params[:id])
   end
 
   def edit
@@ -41,20 +41,19 @@ class MyGalleriesController < ApplicationController
     end
   end
 
-  # galleryページからの削除
-  def destroy
-    work = Work.find(params[:work_id])
-    my_gallery = current_user.my_galleries.find_by(my_gallery_id: params[:my_gallery_id])
-    my_gallery.destroy
-    redirect_to gallery_path(work)
-  end
+  # galleryページからの削除(gallery-id取れず)
+  # def destroy
+  #   user = current_user
+  #   my_gallery = user.my_galleries.find_by(id: params[:id])
+  #   my_gallery.destroy
+  #   redirect_to gallery_path(work)
+  # end
 
   # my_galleryページからの削除
   def withdraw
-    work = Work.find(params[:work_id])
-    my_gallery = current_user.my_galleries.find_by(my_gallery_id: params[:my_gallery_id])
+    my_gallery = current_user.my_galleries.find_by(id: params[:id])
     my_gallery.destroy
-    redirect_to my_gallery_path(work)
+    redirect_to user_my_gallery_index_path
   end
 
   private
@@ -64,8 +63,8 @@ class MyGalleriesController < ApplicationController
   end
 
   def correct_user
-    @my_gallery = current_user.my_gallery.find_by(id: params[:id])
-    @user = @my_gallery.user.id
+    @my_gallery = current_user.my_galleries.find_by(id: params[:id])
+    @user = @my_gallery.user_id
     unless @user == current_user.id
       redirect_to gallery_index_path
     end

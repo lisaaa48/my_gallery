@@ -1,15 +1,15 @@
 <%= stylesheet_link_tag 'user/my_galleries' %>
-<div class="mypg">
+<div class="my-gallery-show">
   <div class="my-gallery-index">
     <div class="index-content" style="padding-top: 80px;">
       <div class="container">
         <div class="row">
           <div class="col-md-12" style="padding-top: 30px;">
             <h1 class="text-center">
-              aaa
+              Edit description and tags.
             </h1>
             <div class="edit-my-gallery" style="padding-top: 80px;">
-              <div class="work-frame">
+              <div class="work-frame text-center">
                 <%= attachment_image_tag @my_gallery.work, :img, format:'jpeg', class: "work-show" %>
               </div>
               <hr>
@@ -24,7 +24,7 @@
                     <%= text_area_tag 'my_gallery[tag_list]', @my_gallery.tag_list.join(','), placeholder: "Enter comma-delimited key words!", class: "form-control" %>
                   </div>
                   <div class="form-group text-center" style="padding-top: 50px;">
-                    <%= f.submit "Update", class: "btn btn-md btn-secendary" %>
+                    <%= f.submit "Update", class: "btn btn-md btn-outline-secondary" %>
                   </div>
                 <% end %>
             </div>
