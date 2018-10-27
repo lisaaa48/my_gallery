@@ -1,5 +1,7 @@
 class Admin::WorksController < ApplicationController
 
+  before_action :authenticate_admin!
+
   layout "admin"
 
   def index
@@ -22,11 +24,16 @@ class Admin::WorksController < ApplicationController
 
   def edit
     @work = Work.find(params[:id])
+    @pins = @work.pins
   end
 
   def update
     work = Work.find(params[:id])
+    pins = work.pins
     work.update(work_params)
+    pins.each do |pin|
+      pin.note.update(pin_params)
+    end
     redirect_to admin_works_path
   end
 
@@ -41,6 +48,10 @@ class Admin::WorksController < ApplicationController
 
   def work_params
     params.require(:work).permit(:img, :title, :author, :period_id, :production_year, :tool, :width, :height, :period_id, :holder_id)
+  end
+
+  def pin_params
+    params.require(:pin).permit(:work_id, :note, :value_x, :value_y)
   end
 
 end

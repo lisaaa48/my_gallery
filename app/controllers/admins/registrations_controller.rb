@@ -13,7 +13,11 @@ class Admins::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    @admin = Admin.new
+    if Admin.any?
+      redirect_to new_admin_session_path
+    else
+      @admin = Admin.new
+    end
   end
 
   # POST /resource

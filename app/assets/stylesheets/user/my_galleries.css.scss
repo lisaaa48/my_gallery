@@ -5,6 +5,26 @@
   color: #00533fff;
 }
 
+/* after Added */
+.add-from-gallery > .btn-outline-dark {
+  background: #696969; //ボタンの背景色
+    color: #fafdff; //ボタンのテキストの色
+}
+
+.btn-outline-dark:hover, .btn-outline-dark:focus,
+.btn-outline-dark:active, .btn-outline-dark:active:focus, .btn-outline-dark:active:hover, .btn-outline-dark:active.focus,
+.btn-outline-dark.active, .btn-outline-dark.active:focus, .btn-outline-dark.active:hover, .btn-outline-dark.active.focus,
+.open > .dropdown-toggle.btn-outline-dark,
+.open > .dropdown-toggle.btn-outline-dark:hover,
+.open > .dropdown-toggle.btn-outline-dark:focus,
+.open > .dropdown-toggle.btn-outline-dark.focus,
+.btn-outline-dark.disabled:hover, .btn-outline-dark[disabled]:hover, fieldset[disabled] .btn-outline-dark:hover,
+.btn-outline-dark.disabled:focus, .btn-outline-dark[disabled]:focus, fieldset[disabled] .btn-outline-dark:focus,
+.btn-outline-dark.disabled.focus, .btn-outline-dark[disabled].focus, fieldset[disabled] .btn-outline-dark.focus {
+    background: #fafdff; //ボタンの上にポインタを持ってきたり、クリックしたりした時の背景色
+    color: #696969; //ボタンの上にポインタを持ってきたり、クリックしたりした時のテキストの色
+}
+
 /* my gallery visit list google maps */
 .google-maps {
   width: 100%;
@@ -43,7 +63,7 @@
 }
 
 /* my gallery */
-.mypg {
+body {
   font-family: 'Nanum Myeongjo', serif;
   background-color: #006a6c;
   color: #fafdff;
@@ -53,6 +73,7 @@
 .work-frame {
   width: 1080px;
   height: 600px;
+  margin: 0 auto;
 }
 
 .work-show {
@@ -124,4 +145,3 @@
 .work-box:nth-child(3n) {
   margin-right: 0;
 }
-

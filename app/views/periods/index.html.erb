@@ -7,21 +7,18 @@
           <h1 class="text-center" style="font-size: 50px; padding-bottom: 100px;">
             Search Results
           </h1>
-          <div class="works-all" style="flex-direction: colum; padding-bottom: 1577px; padding-top: 80px;">
-            <% @periods.each do |period| %>
-              <% period.time_frame %>
-              <% period.works.each_slice(3) do |works| %>
-              <div class="works-row">
-                <% works.each do |work| %>
-                <div class="work-box">
-                  <%= link_to gallery_path(work.id) do %>
-                  <%= attachment_image_tag work, :img, :fill, 293, 293 %>
-                  <% end %>
-                </div>
+          <div class="works-all" style="flex-direction: colum; padding-bottom: 200px; padding-top: 80px;">
+            <% @works.each_slice(3) do |works| %>
+            <div class="works-row">
+              <% works.each do |work| %>
+              <div class="work-box">
+                <%= link_to gallery_path(work.id) do %>
+                <%= attachment_image_tag work, :img, :fill, 293, 293 %>
                 <% end %>
-              <% end %>
               </div>
+              <% end %>
             <% end %>
+            </div>
           </div>
         </div>
       </div>
